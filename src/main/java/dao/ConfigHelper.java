@@ -16,128 +16,24 @@ import java.util.Properties;
 
 public class ConfigHelper
 {
-    /*
-        ATENCAO: se as propriedades s seguir nao forem definidas, o framework 
-          ira buscar os arquivos no CLASSPATH da aplicacao. 
-    */ 
-    
     /**
-        cms.web.CONFIG_DIR : 
-         (opcional) indica o diretorio onde se encontram os arquivos de 
-             configuracao da aplicacao. 
-    */    
-    public static String CONFIG_DIR = 
-        "cms.web.CONFIG_DIR";
-    /**
-       cms.web.SYSTEM_PROPERY_TO_CONFIG_DIR :
-        (opcional) indica o nome da propriedade usada na inicializacao
-         do servidor (jvm) que indica diretorio onde se encontram os 
-         arquivos de configuracao da aplicacao. 
-    */      
-    public static String SYSTEM_PROPERY_TO_CONFIG_DIR = 
-        "cms.web.SYSTEM_PROPERY_TO_CONFIG_DIR";
-    
+     * O classpath da aplicacao será usado na busca caso o arquivo.
+     * 
+     * @param fileName
+     * @return
+     * @throws IOException
+     */
+    public static InputStream getConfigFileStream(String fileName) 
+    throws IOException
+    {
+        return getClassPathFileStrem(fileName);
 
-    /**
-     * Informa o Diretorio de configura��o (CONFIG_DIR), se definido na aplica��o.
-     * @return
-     */
-    public static String getConfigDir()
-    {
-        String prop = System.getProperty(CONFIG_DIR);
-        if (prop == null || prop.trim().equals(""))
-        {
-            return null;
-        }
-        return prop;
     }
     
-    /**
-     * Obtem uma InputStream para arquivo localizado no diretorio de 
-     * configura��o da aplicacao (CONFIG_DIR).
-     * 
-     * Se o parametro 'searchInClassPath' for 'true' o classpath da aplica��o
-     * ser� tamb�m usado na busca caso o arquivo n�o seja encotrado no 
-     * diretorio de configura��o da aplica��o (CONFIG_DIR).
-     * 
-     * @param fileName
-     * @param searchInClassPath  Se 'true' o classpath da aplica��o ser� tamb�m usado na busca.
-     * @return
-     * @throws IOException
-     */
-    public static InputStream getConfigFileStream(String fileName, boolean searchInClassPath) 
+    public static Properties getConfigFileProperties(String fileName) 
     throws IOException
     {
-        String configDir = getConfigDir();
-        if (configDir == null && !searchInClassPath)
-        {
-            throw new IOException("CONFIG_DIR not defined in application.");
-        }
-        if (configDir != null)
-        {
-            try
-            {
-                return new FileInputStream(new File(configDir,fileName));
-            }
-            catch (FileNotFoundException e)
-            {
-                if (!searchInClassPath) throw e;
-                return getClassPathFileStrem(fileName);
-            }
-        }
-        else
-        {
-            return getClassPathFileStrem(fileName);
-        }
-    }
-    
-    /**
-     * Obtem as 'Properties' de um arquivo de propriedades localizado no 
-     * diretorio de configuraao da aplicacao (CONFIG_DIR).
-     * 
-     * Se o parametro 'searchInClassPath' for 'true' o classpath da aplicacao
-     * sera tambem usado na busca caso o arquivo nao seja encotrado no 
-     * diretorio de configuraaoo da aplicaaoo (CONFIG_DIR).
-     * 
-     * @param fileName
-     * @param searchInClassPath  Se 'true' o classpath da aplicaaoo ser� tambem usado na busca.
-     * @return
-     * @throws IOException
-     */
-    public static Properties getConfigFileProperties(String fileName, boolean searchInClassPath) 
-    throws IOException
-    {
-        String configDir = getConfigDir();
-        if (configDir == null && !searchInClassPath)
-        {
-            throw new IOException("CONFIG_DIR not defined in application.");
-        }
-        if (configDir != null)
-        {
-            try
-            {
-                InputStream is =  new FileInputStream(new File(configDir,fileName));
-                Properties props = new Properties();
-                try
-                {
-                    props.load(is);
-                }
-                finally
-                {
-                    try{if(is!=null)is.close();}catch (java.io.IOException e){} 
-                }                
-                return props;            
-            }
-            catch (FileNotFoundException e)
-            {
-                if (!searchInClassPath) throw e;
-                return getClassPathFileProperties(fileName);
-            }
-        }
-        else
-        {
-            return getClassPathFileProperties(fileName);
-        }
+    	return getClassPathFileProperties(fileName);
     }
     
     public static InputStream getClassPathFileStrem(String filename)
@@ -340,11 +236,5 @@ public class ConfigHelper
         {
             if (bw != null)bw.close();
         }
-    }
-    
-    public static void main(String[] args)
-    {
-        System.out.println(Base64.getEncoder().encodeToString("sud5273&*".getBytes()));
-        System.out.println(new String(Base64.getDecoder().decode("cHZkbSYxOTk4Kg==".getBytes())));
     }
 }

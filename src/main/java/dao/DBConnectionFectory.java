@@ -21,7 +21,7 @@ public class DBConnectionFectory {
     throws SQLException, IOException, ClassNotFoundException
     {
 
-        Properties props = ConfigHelper.getConfigFileProperties("datasource.ini", true);            
+        Properties props = ConfigHelper.getConfigFileProperties("datasource.ini");            
         
         String user = props.getProperty("jdbc.user") ;
         String pwd = ConfigHelper.decode64(props.getProperty("jdbc.pwd"));

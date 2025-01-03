@@ -7,8 +7,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
-import tool.GetBy;
-import tool.ListBy;
+import tool.annotation.GetBy;
+import tool.annotation.ListBy;
 
 //@Table(name = "aluno_table")
 public class Aluno {

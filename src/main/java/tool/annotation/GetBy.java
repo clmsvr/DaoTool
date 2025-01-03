@@ -1,4 +1,4 @@
-package tool;
+package tool.annotation;
 
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.METHOD;
@@ -9,5 +9,5 @@ import java.lang.annotation.Target;
 
 @Target({METHOD, FIELD}) 
 @Retention(RUNTIME)
-public @interface ListBy {
+public @interface GetBy {
 }

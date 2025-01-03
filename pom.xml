@@ -22,24 +22,23 @@
             <version>3.1.0</version>
         </dependency>   
              
-    <dependency>
-        <groupId>com.sun.codemodel</groupId>
-        <artifactId>codemodel</artifactId>
-        <version>2.6</version>
-    </dependency>
-   
-    <dependency>
-        <groupId>com.mysql</groupId>
-        <artifactId>mysql-connector-j</artifactId>
-        <version>8.0.33</version>
-    </dependency>
-        
-    <dependency>
-        <groupId>com.zaxxer</groupId>
-        <artifactId>HikariCP</artifactId>
-        <version>5.1.0</version>
-    </dependency>
-    
+        <dependency>
+            <groupId>com.sun.codemodel</groupId>
+            <artifactId>codemodel</artifactId>
+            <version>2.6</version>
+        </dependency>
+       
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>8.0.33</version>
+        </dependency>
+            
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>5.1.0</version>
+        </dependency>
     
     </dependencies>
   

@@ -28,6 +28,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
+import tool.annotation.DeleteBy;
+import tool.annotation.GetBy;
+import tool.annotation.ListBy;
+import tool.annotation.UpdateBy;
 
 public class Tool
 {

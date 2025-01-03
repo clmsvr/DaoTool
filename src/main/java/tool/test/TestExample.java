@@ -2,7 +2,7 @@ package tool.test;
 
 import tool.Tool;
 
-public class Test {
+public class TestExample {
     public static void main(String args[])
     {
         try
@@ -11,7 +11,7 @@ public class Test {
             //Class<?> cls = Class.forName("tool.test.UserTest");
             //makeClass(cls, "./src/main/java");
         	
-        	Tool.makeClass(Aluno.class, "./src/main/java");
+        	Tool.makeClass(Usuario.class, "./src/main/java");
         }
         catch (Exception e)
         {

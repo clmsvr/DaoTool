@@ -11,7 +11,7 @@ public class TestExample {
             //Class<?> cls = Class.forName("tool.test.UserTest");
             //makeClass(cls, "./src/main/java");
         	
-        	Tool.makeClass(Usuario.class, "./src/main/java");
+        	Tool.makeClass(AlunoEx.class, "./src/main/java");
         }
         catch (Exception e)
         {

@@ -11,7 +11,7 @@ import tool.annotation.GetBy;
 import tool.annotation.ListBy;
 
 //@Table(name = "aluno_table")
-public class Aluno {
+public class AlunoEx {
 	
 	@Id  //gera as operaões de CRUD normais para o campo id
 	@GeneratedValue //nao vai atualizar este campo

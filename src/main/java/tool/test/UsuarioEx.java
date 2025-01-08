@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 import tool.annotation.GetBy;
 
 
-public class Usuario
+public class UsuarioEx
 {
 
 	@Id

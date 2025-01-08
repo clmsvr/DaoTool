@@ -9,17 +9,17 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import dao.NotFoundException;
 
-public class UsuarioDao {
+public class UsuarioExDao {
 
-    private final static String getsql = "SELECT * FROM usuario  WHERE id = ?";
-    private final static String getByNomeSql = "SELECT * FROM usuario  WHERE nome = ?";
-    private final static String listsql = "SELECT * FROM usuario";
-    private final static String insertsql = "INSERT INTO usuario (nome, senha, role) VALUES( ?, ?, ?) ";
-    private final static String updatesql = "UPDATE usuario SET nome = ?, senha = ?, role = ? WHERE id = ? ";
-    private final static String updateForNomeSql = "UPDATE usuario SET nome = ?  WHERE id = ? ";
-    private final static String updateForSenhaSql = "UPDATE usuario SET senha = ?  WHERE id = ? ";
-    private final static String updateForRoleSql = "UPDATE usuario SET role = ?  WHERE id = ? ";
-    private final static String deletesql = "DELETE FROM usuario WHERE id = ?";
+    private final static String getsql = "SELECT * FROM usuarioex  WHERE id = ?";
+    private final static String getByNomeSql = "SELECT * FROM usuarioex  WHERE nome = ?";
+    private final static String listsql = "SELECT * FROM usuarioex";
+    private final static String insertsql = "INSERT INTO usuarioex (nome, senha, role) VALUES( ?, ?, ?) ";
+    private final static String updatesql = "UPDATE usuarioex SET nome = ?, senha = ?, role = ? WHERE id = ? ";
+    private final static String updateForNomeSql = "UPDATE usuarioex SET nome = ?  WHERE id = ? ";
+    private final static String updateForSenhaSql = "UPDATE usuarioex SET senha = ?  WHERE id = ? ";
+    private final static String updateForRoleSql = "UPDATE usuarioex SET role = ?  WHERE id = ? ";
+    private final static String deletesql = "DELETE FROM usuarioex WHERE id = ?";
 
     private static void closeResource(Statement ps) {
         try{if (ps != null) ps.close();}catch (Exception e){ps = null;}
@@ -30,10 +30,10 @@ public class UsuarioDao {
         try{if (ps != null) ps.close();}catch (Exception e){ps = null;}
     }
 
-    static Usuario set(ResultSet rs)
+    static UsuarioEx set(ResultSet rs)
         throws SQLException
     {
-        Usuario vo = new Usuario();
+        UsuarioEx vo = new UsuarioEx();
         vo.setId(rs.getLong("id"));
         vo.setNome(rs.getString("nome"));
         vo.setSenha(rs.getString("senha"));
@@ -41,7 +41,7 @@ public class UsuarioDao {
         return vo;
     }
 
-    public static Usuario get(Connection conn, long id)
+    public static UsuarioEx get(Connection conn, long id)
         throws NotFoundException, SQLException
     {
         PreparedStatement ps = null;
@@ -51,14 +51,14 @@ public class UsuarioDao {
             ps.setLong(1, id);
             rs = ps.executeQuery();
             if (!rs.next()) {throw new NotFoundException("Object not found [" + id + "]");}
-            Usuario b = set(rs);
+            UsuarioEx b = set(rs);
             return b;
         }
         catch (SQLException e){throw e;}
         finally{closeResource(ps,rs); ps = null;rs = null; }
     }
 
-    public static Usuario getByNome(Connection conn, String nome)
+    public static UsuarioEx getByNome(Connection conn, String nome)
         throws NotFoundException, SQLException
     {
         PreparedStatement ps = null;
@@ -68,14 +68,14 @@ public class UsuarioDao {
             ps.setString(1, nome);
             rs = ps.executeQuery();
             if (!rs.next()) {throw new NotFoundException("Object not found By [" + nome + "]");}
-            Usuario b = set(rs);
+            UsuarioEx b = set(rs);
             return b;
         }
         catch (SQLException e){throw e;}
         finally{closeResource(ps,rs); ps = null;rs = null; }
     }
 
-    public static ArrayList<Usuario> list(Connection conn)
+    public static ArrayList<UsuarioEx> list(Connection conn)
         throws SQLException
     {
         PreparedStatement ps = null;
@@ -83,10 +83,10 @@ public class UsuarioDao {
         try {
             ps = conn.prepareStatement(listsql);
             rs = ps.executeQuery();
-            if (!rs.next()) {return new ArrayList<Usuario>();}
-            ArrayList<Usuario> list = new ArrayList<Usuario>();
+            if (!rs.next()) {return new ArrayList<UsuarioEx>();}
+            ArrayList<UsuarioEx> list = new ArrayList<UsuarioEx>();
             do
-            { Usuario b = set(rs); list.add(b); }
+            { UsuarioEx b = set(rs); list.add(b); }
             while (rs.next());
             return list;
         }
@@ -94,7 +94,7 @@ public class UsuarioDao {
         finally{closeResource(ps,rs); ps = null;rs = null; }
     }
 
-    public static void insert(Connection conn, Usuario vo)
+    public static void insert(Connection conn, UsuarioEx vo)
         throws SQLException
     {
         PreparedStatement ps = null;
@@ -115,7 +115,7 @@ public class UsuarioDao {
         finally{closeResource(ps,rs); ps = null;rs = null; }
     }
 
-    public static void update(Connection conn, Usuario vo)
+    public static void update(Connection conn, UsuarioEx vo)
         throws NotFoundException, SQLException
     {
         PreparedStatement ps = null;
